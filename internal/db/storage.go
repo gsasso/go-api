@@ -3,14 +3,15 @@ package main
 import (
 	"database/sql"
 
+	"github.com/gsasso/go-api/internal/types"
 	_ "github.com/lib/pq"
 )
 
 type Storage interface {
-	CreateCustomer(*CustomerResponse) error
-	GetCustomerById(string) (*CustomerResponse, error)
-	DeleteCustomer(string) (*CustomerResponse, error)
-	UpdateCustomer(string) (*CustomerResponse, error)
+	CreateCustomer(*types.CustomerResponse) error
+	GetCustomerById(string) (*types.CustomerResponse, error)
+	DeleteCustomer(string) (*types.CustomerResponse, error)
+	UpdateCustomer(string) (*types.CustomerResponse, error)
 }
 
 type PostgresDB struct {
@@ -38,10 +39,10 @@ func (s *PostgresDB) Init() error {
 	return nil
 }
 
-func (s *PostgresDB) CreateCustomer(*CustomerResponse) error {
+func (s *PostgresDB) CreateCustomer(*types.CustomerResponse) error {
 	return nil
 }
 
-func (s *PostgresDB) GetCustomerById(SystemID string) (*CustomerResponse, error) {
+func (s *PostgresDB) GetCustomerById(SystemID string) (*types.CustomerResponse, error) {
 	return nil, nil
 }

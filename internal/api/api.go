@@ -1,4 +1,4 @@
-package main
+package api
 
 import (
 	"context"
@@ -8,6 +8,9 @@ import (
 	"net/http"
 
 	"github.com/gorilla/mux"
+	"github.com/gsasso/go-api/internal/logging"
+	"github.com/gsasso/go-api/internal/service"
+	"github.com/gsasso/go-api/internal/types"
 )
 
 type apiFunc func(context.Context, http.ResponseWriter, *http.Request) error
@@ -34,13 +37,14 @@ func makeHTTPHandlerFunc(apiFn apiFunc) http.HandlerFunc {
 
 type APIServer struct {
 	listenAddr string
-	svc        CustomerFetcher
+	svc        service.CustomerFetcher
 }
 
-func APICustomerServer(listenAddr string, svc CustomerFetcher) *APIServer {
+func APICustomerServer(listenAddr string) *APIServer {
+	customerFetcher := logging.NewLogService(&service.CustomerFetcherService{})
 	return &APIServer{
 		listenAddr: listenAddr,
-		svc:        svc,
+		svc:        customerFetcher,
 	}
 }
 
@@ -63,14 +67,14 @@ func (s *APIServer) handleCustomer(ctx context.Context, w http.ResponseWriter, r
 
 func (s *APIServer) handleGetCustomer(ctx context.Context, w http.ResponseWriter, r *http.Request) error {
 	id := r.URL.Query().Get("Id")
-	gedi, _ := s.svc.FetchCustomer(ctx, id)
-	customerResponse := CustomerResponse{
-		Id:   id,
-		GEDI: gedi,
-	}
+	var customReq types.CustomerRequest
+	//Func to wrap the parameters into our CustomerReq?
+	customReq.Id = id
+
+	customerResponse, _ := s.svc.FetchCustomer(ctx, customReq)
 	return WriteJson(w, http.StatusOK, &customerResponse)
 }
 
 func (s *APIServer) handlePostCustomer(ctx context.Context, w http.ResponseWriter, r *http.Request) error {
-	return WriteJson(w, http.StatusOK, &CustomerResponse{})
+	return WriteJson(w, http.StatusOK, &types.CustomerResponse{})
 }
