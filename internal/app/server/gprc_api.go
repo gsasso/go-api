@@ -1,19 +1,24 @@
-package api
+package server
 
-// func makeGRPCServerAndRun(listenAddr string, svc PriceService) error {
-// 	grpcPriceFetcher := NewGRPCPriceFetcherServer(svc)
+import (
+	"github.com/gsasso/go-api/internal/app/controller"
+	"google.golang.org/grpc"
+)
 
-// 	ln, err := net.Listen("tcp", listenAddr)
-// 	if err != nil {
-// 		return err
-// 	}
+type CustomerIntelligenceServer struct {
+	server *grpc.Server
+}
 
-// 	opts := []grpc.ServerOption{}
-// 	server := grpc.NewServer(opts...)
-// 	proto.RegisterPriceFetcherServer(server, grpcPriceFetcher)
+func makeGRPCServer(c controller.CustomerController) *CustomerIntelligenceServer {
 
-// 	return server.Serve(ln)
-// }
+	opts := []grpc.ServerOption{}
+	server := grpc.NewServer(opts...)
+	//v1connect.RegisterPriceFetcherServer(server, grpcPriceFetcher)
+
+	return &CustomerIntelligenceServer{
+		server: server,
+	}
+}
 
 // type GRPCPriceFetcherServer struct {
 // 	svc PriceService
