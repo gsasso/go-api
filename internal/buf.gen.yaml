@@ -8,12 +8,12 @@ managed:
       - buf.build/grpc-ecosystem/grpc-gateway
       - buf.build/grpc/grpc
 plugins:
-  - name: go
+  - plugin: buf.build/grpc/go:v1.3.0
     out: generated
     opt:
       - paths=import
       - module=github.com/gsasso/go-api/internal/generated
-  - name: go-grpc
+  - plugin: buf.build/protocolbuffers/go
     out: generated
     opt:
       - paths=import
