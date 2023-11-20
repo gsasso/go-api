@@ -3,7 +3,7 @@ package service
 import (
 	"context"
 
-	"github.com/gsasso/go-api/internal/types"
+	"github.com/gsasso/go-api/internal/app/types"
 )
 
 //Interface that can fetch a customer

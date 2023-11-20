@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/gsasso/go-api/internal/types"
+	"github.com/gsasso/go-api/internal/app/types"
 )
 
 var customerMocks = map[string]string{

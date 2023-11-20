@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/gsasso/go-api/internal/api"
+	"github.com/gsasso/go-api/internal/app/json_api"
 )
 
 func main() {
@@ -18,6 +18,6 @@ func main() {
 	// fmt.Println(customerResponse.GEDI)
 
 	//Bootstrap everything
-	server := api.APICustomerServer(":3000")
+	server := json_api.APICustomerServer(":3000")
 	server.Run()
 }

@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+option go_package = "github.com/gsasso/go-api/internal/generated/proto"
+
+import "google/api/annotations.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+// ---------------------------------------
+// Service
+// ---------------------------------------
+
+service CustomerIntelligence {
+	rpc FetchCustomer(CustomerFetchRequest) returns (CustomerFetchResponse) {
+		option (google.api.http) = {
+            post: "/v1/customer/fetch"
+            body: "*"
+        };
+	}
+}
+
+message CustomerFetchRequest {
+	string Id = 1;
+}
+
+message CustomerFetchResponse {
+	string string = 1;
+	string GEDI = 2;
+}

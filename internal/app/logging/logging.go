@@ -4,8 +4,8 @@ import (
 	"context"
 	"time"
 
-	"github.com/gsasso/go-api/internal/service"
-	"github.com/gsasso/go-api/internal/types"
+	"github.com/gsasso/go-api/internal/app/service"
+	"github.com/gsasso/go-api/internal/app/types"
 	"github.com/sirupsen/logrus"
 )
 

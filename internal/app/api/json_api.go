@@ -8,9 +8,9 @@ import (
 	"net/http"
 
 	"github.com/gorilla/mux"
-	"github.com/gsasso/go-api/internal/logging"
-	"github.com/gsasso/go-api/internal/service"
-	"github.com/gsasso/go-api/internal/types"
+	"github.com/gsasso/go-api/internal/app/logging"
+	"github.com/gsasso/go-api/internal/app/service"
+	"github.com/gsasso/go-api/internal/app/types"
 )
 
 type apiFunc func(context.Context, http.ResponseWriter, *http.Request) error

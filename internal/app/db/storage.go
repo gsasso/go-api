@@ -3,7 +3,7 @@ package main
 import (
 	"database/sql"
 
-	"github.com/gsasso/go-api/internal/types"
+	"github.com/gsasso/go-api/internal/app/types"
 	_ "github.com/lib/pq"
 )
 
