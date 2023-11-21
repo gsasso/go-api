@@ -1,7 +1,10 @@
 package main
 
 import (
-	"github.com/gsasso/go-api/internal/app/json_api"
+	"fmt"
+
+	"github.com/gsasso/go-api/internal/app/controller"
+	"github.com/gsasso/go-api/internal/app/service"
 )
 
 func main() {
@@ -18,6 +21,17 @@ func main() {
 	// fmt.Println(customerResponse.GEDI)
 
 	//Bootstrap everything
-	server := json_api.APICustomerServer(":3000")
-	server.Run()
+	service := &service.CustomerFetcherService{}
+	controller := controller.NewCustomerIntelligenceController(service)
+	grpcServer := server.makeGRPCServer(controller)
+	grpcServer.Start()
+
+	if controller != nil {
+		fmt.Println("controller and service initialized")
+	}
+	//grpcServer := server.makeGRPCServer(controller)
+	//grpcServer.Start()
+
+	//server := json_api.APICustomerServer(":3000")
+	//server.Run()
 }

@@ -7,14 +7,14 @@ import (
 )
 
 //Interface that can fetch a customer
-type CustomerFetcher interface {
+type CustomerIntelligence interface {
 	FetchCustomer(context.Context, types.CustomerRequest) (types.CustomerResponse, error)
 }
 
 //Implement CustomerFetcher interface
 type CustomerFetcherService struct{}
 
-func (s *CustomerFetcherService) FetchCustomer(ctx context.Context, customreq types.CustomerRequest) (types.CustomerResponse, error) {
+func (s *CustomerFetcherService) FetchCustomer(ctx context.Context, req types.CustomerRequest) (types.CustomerResponse, error) {
 	//Call DB in storage.go and if not found call bisnode API
-	return MockCustomerFetcher(ctx, customreq)
+	return MockCustomerFetcher(ctx, req)
 }

@@ -22,6 +22,6 @@ message CustomerFetchRequest {
 }
 
 message CustomerFetchResponse {
-	string string = 1;
+	string Id = 1;
 	string GEDI = 2;
 }
