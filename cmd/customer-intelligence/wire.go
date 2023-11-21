@@ -1,9 +1,12 @@
 package main
 
-//"github.com/google/wire"
+import (
+	"github.com/google/wire"
+	"github.com/gsasso/go-api/internal/app/server"
+)
 
-//func InitApp() *server.LogisticServer {
+func Initialize() *server.CustomerIntelligenceServer {
 
-//wire.Build(server.ServerProvider)
-//return &server.LogisticServer{}
-//}
+	wire.Build(server.ServerProvider)
+	return &server.CustomerIntelligenceServer{}
+}

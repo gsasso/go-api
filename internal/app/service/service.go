@@ -12,9 +12,13 @@ type CustomerIntelligence interface {
 }
 
 //Implement CustomerFetcher interface
-type CustomerFetcherService struct{}
+type CustomerService struct{}
 
-func (s *CustomerFetcherService) FetchCustomer(ctx context.Context, req types.CustomerRequest) (types.CustomerResponse, error) {
-	//Call DB in storage.go and if not found call bisnode API
+func (s *CustomerService) FetchCustomer(ctx context.Context, req types.CustomerRequest) (types.CustomerResponse, error) {
+	//Call DB in storage.go to get GEDI and if not found call bisnode API MATCH
 	return MockCustomerFetcher(ctx, req)
+}
+
+func ProvideCustomerService() *CustomerService {
+	return &CustomerService{}
 }

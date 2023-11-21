@@ -1,12 +1,25 @@
 package client
 
 import (
-	"context"
 	"encoding/json"
+	"fmt"
 	"net/http"
 
-	"github.com/gsasso/go-api/internal/types"
+	"github.com/gsasso/go-api/internal/app/types"
+	proto "github.com/gsasso/go-api/internal/generated/v1"
+	"google.golang.org/grpc"
 )
+
+func GRPCClient(remoteAddr string) (proto.CustomerIntelligenceClient, error) {
+	conn, err := grpc.Dial(remoteAddr, grpc.WithInsecure())
+	if err != nil {
+		return nil, err
+	}
+
+	c := proto.NewCustomerIntelligenceClient(conn)
+
+	return c, nil
+}
 
 type Client struct {
 	endpoint string
@@ -16,8 +29,9 @@ func New(endpoint string) *Client {
 	return &Client{endpoint: endpoint}
 }
 
-func (c *Client) FetchCustomer(ctx context.Context, customReq types.CustomerRequest) (*types.CustomerResponse, error) {
-	req, err := http.NewRequest("get", c.endpoint, nil)
+func (c *Client) FetchCustomer(Id string) (*types.CustomerResponse, error) {
+	endpoint := fmt.Sprintf("%s?Id=%s", c.endpoint, Id)
+	req, err := http.NewRequest("GET", endpoint, nil)
 	if err != nil {
 		return nil, err
 	}
