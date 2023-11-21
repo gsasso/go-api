@@ -3,13 +3,13 @@ package main
 func main() {
 
 	//Bootstrap everything
-	// service := &service.CustomerService{}
+	// service := logging.ProvideLogService(&service.CustomerService{})
 	// controller := controller.ProvideCustomerIntelligenceController(service)
 	// grpcServer := server.ProvideGRPCServer(controller)
 	// grpcServer.Start()
 
-	//Bootstrap everything with Wire
-	server := InitializeApp()
+	// //Bootstrap everything with Wire
+	server := Initialize()
 	server.Start()
 
 }

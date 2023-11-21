@@ -14,7 +14,7 @@ import (
 
 // Injectors from wire.go:
 
-func InitializeApp() *server.CustomerIntelligenceServer {
+func Initialize() *server.CustomerIntelligenceServer {
 	customerService := service.ProvideCustomerService()
 	customerController := controller.ProvideCustomerIntelligenceController(customerService)
 	customerIntelligenceServer := server.ProvideGRPCServer(customerController)

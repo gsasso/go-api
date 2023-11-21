@@ -9,17 +9,17 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-type loggingService struct {
+type LoggingService struct {
 	next service.CustomerIntelligence
 }
 
-func NewLogService(next service.CustomerIntelligence) service.CustomerIntelligence {
-	return &loggingService{
+func ProvideLogService(next service.CustomerIntelligence) service.CustomerIntelligence {
+	return &LoggingService{
 		next: next,
 	}
 }
 
-func (s *loggingService) FetchCustomer(ctx context.Context, customReq types.CustomerRequest) (customResponse types.CustomerResponse, err error) {
+func (s *LoggingService) FetchCustomer(ctx context.Context, customReq types.CustomerRequest) (customResponse types.CustomerResponse, err error) {
 	defer func(begin time.Time) {
 		logrus.WithFields(logrus.Fields{
 			"requestID": ctx.Value("requestID"),

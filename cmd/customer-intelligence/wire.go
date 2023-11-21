@@ -5,7 +5,7 @@ import (
 	"github.com/gsasso/go-api/internal/app/server"
 )
 
-func Initialize() *server.CustomerIntelligenceServer {
+func InitializeApp() *server.CustomerIntelligenceServer {
 
 	wire.Build(server.ServerProvider)
 	return &server.CustomerIntelligenceServer{}
