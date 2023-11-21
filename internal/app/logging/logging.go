@@ -10,10 +10,10 @@ import (
 )
 
 type loggingService struct {
-	next service.CustomerFetcher
+	next service.CustomerIntelligence
 }
 
-func NewLogService(next service.CustomerFetcher) service.CustomerFetcher {
+func NewLogService(next service.CustomerIntelligence) service.CustomerIntelligence {
 	return &loggingService{
 		next: next,
 	}
